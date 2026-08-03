@@ -322,9 +322,11 @@
             box-shadow: 0 20px 50px rgba(0,210,255,0.15);
             margin-top: 40px;
             z-index: 2;
+            background: #000;
         }
 
-        .video-container iframe {
+        .video-container iframe,
+        .video-container video {
             position: absolute;
             top: 0;
             left: 0;
@@ -454,7 +456,13 @@
 
         <h2 class="section-label reveal-up">Gameplay Overview</h2>
         <div class="video-container reveal-up">
-            <iframe src="./photos/wc2026.mp4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe
+                src="https://www.youtube.com/embed/f7TvsPuUjKQ"
+                title="Gameplay Overview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy">
+            </iframe>
         </div>
     </section>
 
