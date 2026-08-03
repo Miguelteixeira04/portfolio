@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Meu Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=League+Spartan:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <div class="global-bg-light"></div>
+
+    <nav class="navbar">
+    <a href="#" class="logo" title="Voltar ao topo">
+        <img src="./photos/nome.png" alt="Logótipo Nome">
+    </a>
+    
+    <img src="./photos/logo.png" alt="Logo Centro" class="logo-centro">
+    
+    <button class="menu-button">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="button-glow"></div>
+    </button>
+</nav>
+
+    <section class="hero-section" id="hero-section">
+        <div class="marquee-container">
+            <h1 class="marquee-text">WELCOME TO MY PORTFOLIO &nbsp; WELCOME TO MY PORTFOLIO &nbsp; WELCOME TO MY PORTFOLIO</h1>
+        </div>
+        <div class="marquee-container2">
+            <h1 class="marquee-text reverse">MY NAME IS <span class="highlight-blue">MIGUEL TEIXEIRA</span> &nbsp; MY NAME IS <span class="highlight-blue">MIGUEL TEIXEIRA</span> &nbsp; MY NAME IS <span class="highlight-blue">MIGUEL TEIXEIRA</span></h1>
+        </div>
+        <div class="hero-shrink-container" id="hero-shrink-container">
+            <div class="animated-bg"></div>
+            <div class="image-wrapper" id="main-image-wrapper">
+                <img src="./photos/eu_laranja.png" alt="Foto Base" class="img-base" id="img-base">
+                <img src="./photos/eu_azul.png" alt="Foto Reveal" class="img-hover" id="img-hover">
+            </div>
+        </div>
+        <div class="signature-wrapper">
+            <img src="./photos/assinatura.png" alt="Assinatura" class="signature-img">
+        </div>
+        <div class="info-card">
+            <span class="info-card-title">PURSUING<span class="dots"></span></span>
+            <div class="info-card-content">
+                <div class="info-card-top">
+                    <img src="./photos/logo_dm.png" alt="Logo 1" class="rotating-logo">
+                    <p>M.SC. Design & Multimedia</p>
+                </div>
+                <div class="info-card-divider"></div>
+                <div class="info-card-bottom">
+                    <img src="./photos/logo_lei.png" alt="Logo 2" class="static-logo">
+                    <p>B.Sc. Software Engineer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="horizontal-section" id="horizontal-section">
+        <div class="horizontal-container" id="horizontal-container">
+            <svg class="timeline-curve" width="4800" height="800" viewBox="0 0 4800 800" xmlns="http://www.w3.org/2000/svg">
+                <path d="M -100,270 L 480,270 C 605,270 605,530 730,530 L 1210,530 C 1335,530 1335,270 1460,270 L 1940,270 C 2065,270 2065,530 2190,530 L 2670,530 C 2795,530 2795,270 2920,270 L 3240,270 C 3365,270 3365,530 3490,530 L 3970,530 C 4095,530 4095,270 4220,270 L 4800,270" fill="none" stroke="var(--primary-color)" stroke-width="4" stroke-dasharray="15, 15" stroke-linecap="round"/>
+            </svg>
+            <div class="gallery-item item-up">
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/tkd_01.jpeg" alt="Vila Real 2019">
+                </div>
+                <div class="text-box">
+                    <p class="photo-info">VILA REAL, 2019</p>
+                    <p class="photo-desc">Received the <span class="highlight-blue-text">Best Athlete</span> of the year award in Vila Real due to my performances in national championships.</p>
+                </div>
+            </div>
+            <div class="gallery-item item-down">
+                <div class="text-box">
+                    <p class="photo-info">PONTEVEDRA, ES, 2020</p>
+                    <p class="photo-desc">Following the previous season, I represented the Portuguese <span class="highlight-blue-text">National Team</span> in international tournaments.</p>
+                </div>
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/tkd_02.jpg" alt="Pontevedra 2020">
+                </div>
+            </div>
+            <div class="gallery-item item-up">
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/Liceu.jpg" alt="Vila Real 2022">
+                </div>
+                <div class="text-box">
+                    <p class="photo-info">VILA REAL, 2022</p>
+                    <p class="photo-desc">Completed my <span class="highlight-blue-text">Secondary Education</span> at Escola Secundária Camilo Castelo Branco.</p>
+                </div>
+            </div>
+            <div class="gallery-item item-down">
+                <div class="text-box">
+                    <p class="photo-info">VILA REAL, 2022</p>
+                    <p class="photo-desc">Enrolled in my dream course, <span class="highlight-blue-text">Software Engineering</span> at Universidade de Trás-os-Montes e Alto Douro.</p>
+                </div>
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/utad.jpg" alt="Vila Real 2022">
+                </div>
+            </div>
+            <div class="gallery-item item-up vertical-gallery-item">
+                <div class="image-wrapper-gallery vertical-img-wrapper">
+                    <img src="./photos/utad_diogo.jpeg" alt="Vila Real 2024">
+                </div>
+                <div class="text-box">
+                    <p class="photo-info">VILA REAL, 2024</p>
+                    <p class="photo-desc">I presented my final undergraduate thesis on <span class="highlight-blue-text">Bartle's Taxonomy</span> and its impact on game design.</p>
+                </div>
+            </div>
+            <div class="gallery-item item-down">
+                <div class="text-box">
+                    <p class="photo-info">VILA REAL, 2024</p>
+                    <p class="photo-desc">Graduated in Computer Science and officially became a <span class="highlight-blue-text">Software Engineer</span>.</p>
+                </div>
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/lei.jpg" alt="Vila Real 2024">
+                </div>
+            </div>
+            <div class="gallery-item item-up">
+                <div class="image-wrapper-gallery">
+                    <img src="./photos/dei.jpg" alt="Coimbra 2025">
+                </div>
+                <div class="text-box">
+                    <p class="photo-info">COIMBRA, 2025</p>
+                    <p class="photo-desc">To refine my knowledge in Front-end, UX, and UI, I joined the Master's in <span class="highlight-blue-text">Design and Multimedia</span>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="head-to-head" id="head-to-head">
+        <a href="#editorial-section" class="split split-editorial">
+            <img src="./photos/editorial_placeholder.png" class="split-bg-img img-left">
+            <div class="split-content">
+                <h2 class="split-title">EDITORIAL</h2>
+                <p class="split-subtitle">Magazines, Prints & Graphic Design</p>
+                <div class="icon-arrow">↓</div>
+            </div>
+        </a>
+        <a href="#it-projects-section" class="split split-projects">
+            <div class="split-content">
+                <h2 class="split-title">PROJECTS</h2>
+                <p class="split-subtitle">Software, Web Dev & UI/UX</p>
+                <div class="icon-arrow">↓</div>
+            </div>
+            <img src="./photos/it_placeholder.png" class="split-bg-img img-right">
+        </a>
+    </section>
+
+    <section class="editorial-section" id="editorial-section">
+        <h2 class="section-title ed-fixed-title">EDITORIAL WORKS</h2>
+        
+        <div class="ed-panels-wrapper">
+            <div class="ed-panel panel-1">
+                <div class="anim-bg-container anim-light-gray"></div>
+                <div class="ed-number">01</div>
+                <div class="ed-layout layout-human">
+                    <div class="ed-image-art">
+                        <img src="./photos/tumbnails/human.png" alt="Projeto Human">
+                    </div>
+                    <div class="ed-floating-card glass-card">
+                        <span class="ed-tag">MAGAZINE & WEB</span>
+                        <h3 class="ed-card-title">human +</h3>
+                        <p class="ed-card-desc">An editorial exploration of AI and ethics, examining the societal impact of technology through a minimalist print and digital experience.</p>                        
+                        <a href="./Secundary Pages/Editorial/human/human.html" class="ed-btn">See More <span class="arrow-icon">↗</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ed-panel panel-2" id="panel-voz">
+                <div class="anim-bg-container anim-light-gray"></div>
+                <div class="ed-number">02</div>
+                <div class="ed-layout layout-voz">
+                    <div class="ed-floating-card solid-card">
+                        <span class="ed-tag">EDITORIAL PRINT</span>
+                        <h3 class="ed-card-title">VOZ D' HOJE</h3>
+                        <p class="ed-card-desc">A modern reinterpretation of classic newspaper layouts, blending traditional typography with dynamic grids.</p>
+                        <a href="./Secundary Pages/Editorial/voz/voz.html" class="ed-btn">See More <span class="arrow-icon">↗</span></a>
+                    </div>
+                    <div class="ed-image-art rotated-img">
+                        <img src="./photos/tumbnails/vozhoje.png" alt="Projeto Voz de Hoje">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ed-panel panel-3" id="panel-gothem">
+                <div class="anim-bg-container anim-light-gray"></div>
+                <div class="ed-number">03</div>
+                <div class="ed-layout layout-human">
+                    <div class="ed-image-art">
+                        <img src="./photos/tumbnails/college-gothic.png" alt="Projeto College Gothic">
+                    </div>
+                    <div class="ed-floating-card glass-card">
+                        <span class="ed-tag">MODULAR TYPEFACE</span>
+                        <h3 class="ed-card-title">COLLEGE GOTHIC</h3>
+                        <p class="ed-card-desc">A modular display typeface built as a tribute to the Colégio das Artes de Coimbra, assembled from a small library of geometric modules.</p>
+                        <a href="./Secundary Pages/Editorial/college gothic/index.html" class="ed-btn">See More <span class="arrow-icon">↗</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ed-panel panel-4" id="panel-ivan">
+                <div class="anim-bg-container anim-light-gray"></div>
+                <div class="ed-number">04</div>
+                <div class="ed-layout layout-voz">
+                    <div class="ed-floating-card solid-card">
+                        <span class="ed-tag">EXHIBITION DESIGN</span>
+                        <h3 class="ed-card-title">IVAN CHERMAYEFF</h3>
+                        <p class="ed-card-desc">A six-room exhibition celebrating Ivan Chermayeff's bold language of shape, primary colour and playful collage.</p>
+                        <a href="./Secundary Pages/Editorial/ivan chermayeff/index.html" class="ed-btn">See More <span class="arrow-icon">↗</span></a>
+                    </div>
+                    <div class="ed-image-art rotated-img">
+                        <img src="./photos/tumbnails/ivan.png" alt="Projeto Ivan Chermayeff">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ed-panel panel-5 hamilton-bg" id="panel-hamilton">
+                <div class="anim-bg-container anim-dark-gray"></div>
+                <div class="ed-number dark-num">05</div>
+                <span class="hamilton-bg-text">HAMILTON</span>
+                <div class="ed-layout layout-hamilton">
+                    <div class="ed-image-art gold-shadow">
+                        <img src="./photos/editorial_placeholder.png" alt="Projeto Hamilton">
+                    </div>
+                    <div class="ed-floating-card dark-card">
+                        <span class="ed-tag gold-text">BOOK COVER & BROCHURE</span>
+                        <h3 class="ed-card-title">HAMILTON</h3>
+                        <p class="ed-card-desc">Striking visual identity and brochure design that captures the essence of contemporary storytelling.</p>
+                        <a href="./Secundary Pages/Editorial/hamilton/hamilton.html" class="ed-btn gold-btn">See More <span class="arrow-icon">↗</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="it-projects-section" id="it-projects-section">
+    <div class="anim-bg-container anim-dark-gray"></div>
+    <h2 class="section-title text-light">IT PROJECTS</h2>
+    <div class="bento-grid">
+        
+        <!-- ROW 1 (1 Grande) -->
+        <a href="./Secundary Pages/Projects/Bartle/Bartle.html" class="bento-item p-grande" id="project-bartle">
+            <img src="./photos/tumbnails/BartleZ.png" alt="Projeto BartleZ" class="project-img">
+        </a>  
+
+        <!-- ROW 2 (2 Pequenos) -->
+        <a href="./Secundary Pages/Projects/WC26/WC26.html" class="bento-item p-pequeno" id="project-fifawc">
+            <img src="./photos/tumbnails/FifaWorldCup.png" alt="Projeto FIFA World Cup" class="project-img">
+        </a>   
+        <a href="./Secundary Pages/Projects/Oneiric/Oneiric.html" class="bento-item p-pequeno" id="project-oneiric">
+            <img src="./photos/tumbnails/Oneiric.png" alt="Projeto Oneiric" class="project-img">
+        </a>  
+
+        <!-- ROW 3 (2 Pequenos) -->
+        <a href="./Secundary Pages/Projects/SpaceInvaders/SpaceInvaders.html" class="bento-item p-pequeno" id="project-spaceinvaders">
+            <img src="./photos/tumbnails/SpaceInvaders.png" alt="Projeto Space Invaders" class="project-img">
+        </a>  
+        <a href="./Secundary Pages/Projects/todolist/todolist.html" class="bento-item p-pequeno" id="project-todolist">
+            <img src="./photos/tumbnails/todolist.png" alt="Projeto Todo List" class="project-img">
+        </a>  
+
+        <!-- ROW 4 (1 Grande) -->
+        <a href="./Secundary Pages/Projects/Biblio/Biblio.html" class="bento-item p-grande" id="project-biblio">
+            <img src="./photos/tumbnails/Biblio.png" alt="Projeto Biblio" class="project-img">
+        </a>  
+
+        <!-- ROW 5 (2 Pequenos) -->
+        <a href="./Secundary Pages/Projects/JogoSemáforo/JogoSemaforo.html" class="bento-item p-pequeno" id="project-semaforo">
+            <img src="./photos/tumbnails/Semaforo.png" alt="Projeto Semaforo" class="project-img">
+        </a> 
+        <a href="./Secundary Pages/Projects/Sightsync/Sightsync.html" class="bento-item p-pequeno" id="project-sightsync">
+            <img src="./photos/tumbnails/sightsync.png" alt="Projeto Sightsync" class="project-img">
+        </a> 
+
+        <!-- ROW 6 (2 Pequenos) -->
+        <a href="./Secundary Pages/Projects/AVozdoMondego/AVozdoMondego.html" class="bento-item p-pequeno" id="project-vozmondego">
+            <img src="./photos/tumbnails/vozmondego.png" alt="Projeto Voz de Mondego" class="project-img">
+        </a>             
+        <a href="./Secundary Pages/Projects/Evolubeat/index.html" class="bento-item p-pequeno" id="project-evolubeat">
+            <img src="./photos/tumbnails/Evolubeat.png" alt="Projeto EvoluBeat" class="project-img">
+        </a>
+
+        <!-- ROW 7 (1 Grande) -->
+        <a href="./Secundary Pages/Projects/Gestris/index.html" class="bento-item p-grande" id="project-gestris">
+            <img src="./photos/tumbnails/Gestris.png" alt="Projeto Gestris" class="project-img">
+        </a>   
+    </div>
+</section>
+
+    <script src="script.js"></script>
+</body>
+</html>
