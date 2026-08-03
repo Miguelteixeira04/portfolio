@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivan Chermayeff | My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=League+Spartan:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --gallery-max: 1100px;
+            --gallery-gap: 16px;
+            --room-split: 0.8fr 1.7fr;
+            --img-radius: 6px;
+            --collateral-min: 420px;
+        }
+
+        body.ivan-page {
+            background-color: #f3efe7;
+            color: #15110d;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+        }
+
+        .hero-showcase {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 16vh 5vw 8vh 5vw;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .s-circle { width: 180px; height: 180px; border-radius: 50%; background: #e63327; top: 14%; left: 10%; }
+        .s-square { width: 150px; height: 150px; background: #f2b705; bottom: 16%; left: 16%; transform: rotate(12deg); }
+        .s-tri { width: 0; height: 0; border-left: 100px solid transparent; border-right: 100px solid transparent; border-bottom: 170px solid #1f6fb2; top: 18%; right: 11%; transform: rotate(-10deg); }
+        .s-half { width: 200px; height: 100px; border-radius: 200px 200px 0 0; background: #2f9e44; bottom: 14%; right: 13%; }
+
+        .hero-kicker {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 600;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #e63327;
+            margin-bottom: 18px;
+            z-index: 2;
+        }
+        .hero-title {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 11vw;
+            line-height: 0.85;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+            z-index: 2;
+        }
+        .hero-title .l1 { color: #15110d; }
+        .hero-title .l2 { color: #1f6fb2; }
+
+        .minimal-text {
+            font-family: 'Alice', serif;
+            font-size: 1.2rem;
+            color: #4a443b;
+            max-width: 720px;
+            margin: 40px auto 0 auto;
+            line-height: 1.7;
+            z-index: 2;
+        }
+
+        .section-container {
+            padding: 80px 5vw;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            color: #e63327;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .section-sub {
+            font-family: 'Alice', serif;
+            font-size: 1.15rem;
+            color: #4a443b;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+        }
+
+        .rooms { display: flex; flex-direction: column; gap: 0; }
+        .room {
+            display: grid;
+            grid-template-columns: var(--room-split);   
+            min-height: 80vh;
+            align-items: center;
+        }
+        .room:nth-child(even) .room-visual { order: 2; }
+        .room-text { padding: 8vh 5vw; }
+        .room-num {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 6rem;
+            line-height: 1;
+            margin: 0 0 10px 0;
+        }
+        .room-name {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 24px 0;
+        }
+        .room-desc {
+            font-family: 'Alice', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #3a352d;
+            max-width: 460px;
+        }
+
+        .room-portrait { margin: 0 0 28px 0; max-width: 210px; }
+        .room-portrait img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: var(--img-radius);
+            display: block;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+        }
+        .room-portrait figcaption {
+            font-family: 'Alice', serif;
+            font-size: 0.85rem;
+            color: #4a443b;
+            margin-top: 10px;
+        }
+
+        .room-visual {
+            position: relative;
+            height: 100%;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4vh 2vw;          
+            box-sizing: border-box;
+        }
+
+        .room-gallery {
+            width: 100%;
+            max-width: var(--gallery-max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--gallery-gap);
+            align-items: start; 
+        }
+        .room-gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; 
+            border-radius: var(--img-radius);
+            display: block;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+            background: #ffffff; 
+        }
+        .room-gallery img:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+        }
+
+        .gallery-r4 {
+            width: 100%;
+            max-width: var(--gallery-max);
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;          
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: var(--gallery-gap);
+        }
+        .gallery-r4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: var(--img-radius);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+        }
+        .gallery-r4 .r4-h1 { grid-area: 1 / 1; }       
+        .gallery-r4 .r4-h2 { grid-area: 2 / 1; }      
+        
+        .gallery-r4 .r4-v  { 
+            grid-area: 1 / 2 / 3 / 3; 
+            object-fit: contain; 
+            background: #ffffff; 
+        }
+
+        .ph {
+            width: 80%;
+            height: 70%;
+            min-height: 320px;
+            border: 3px dashed rgba(0,0,0,0.25);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+            font-family: 'League Spartan', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            padding: 20px;
+            background: rgba(255,255,255,0.35);
+        }
+        .ph .ph-mark { font-size: 2rem; }
+        .ph small {
+            font-family: 'Alice', serif;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* cores das salas */
+        .room-1 { background: #fbe9e8; } .room-1 .room-num, .room-1 .ph-mark { color: #e63327; }
+        .room-2 { background: #fdf3d6; } .room-2 .room-num, .room-2 .ph-mark { color: #d99e00; }
+        .room-3 { background: #e4eef6; } .room-3 .room-num, .room-3 .ph-mark { color: #1f6fb2; }
+        .room-4 { background: #e6f2e8; } .room-4 .room-num, .room-4 .ph-mark { color: #2f9e44; }
+        .room-5 { background: #15110d; color: #f3efe7; } .room-5 .room-num, .room-5 .ph-mark { color: #f2b705; } .room-5 .room-desc { color: #cfc8bd; } .room-5 .ph { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); color: #cfc8bd; }
+        .room-5 .room-gallery img { box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+        .room-6 { background: #f0e6f3; } .room-6 .room-num, .room-6 .ph-mark { color: #8e3b9e; }
+
+        .collateral-block { margin-bottom: 70px; }
+        .collateral-block:last-child { margin-bottom: 0; }
+        .collateral-cat {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: #15110d;
+            margin: 0 0 24px 0;
+        }
+        .collateral-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  
+            gap: 24px;
+        }
+        .collateral-grid figure { margin: 0; }
+        .collateral-grid img {
+            width: 100%;
+            aspect-ratio: 713 / 401;   
+            object-fit: cover;
+            border-radius: var(--img-radius);
+            display: block;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+        }
+        .collateral-grid.is-portrait img { aspect-ratio: 3 / 4; }   
+        .collateral-grid figcaption {
+            font-family: 'Alice', serif;
+            font-size: 0.9rem;
+            color: #4a443b;
+            margin-top: 10px;
+        }
+        .collateral-grid.is-single { grid-template-columns: minmax(0, 680px); }
+
+        .floorplan-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.14);
+        }
+
+        @media (max-width: 900px) {
+            .hero-title { font-size: 16vw; }
+            .room { grid-template-columns: 1fr; min-height: auto; }
+            .room:nth-child(even) .room-visual { order: 0; }
+            .room-visual { min-height: 50vh; padding: 4vh 5vw; }
+            .shape { transform: scale(0.6); }
+            .room-portrait { max-width: 180px; }
+            .gallery-r4 { aspect-ratio: auto; grid-template-columns: 1fr; grid-template-rows: none; }
+            .gallery-r4 .r4-h1, .gallery-r4 .r4-h2, .gallery-r4 .r4-v { grid-area: auto; }
+            .gallery-r4 .r4-h1, .gallery-r4 .r4-h2 { aspect-ratio: 900 / 401; }
+            .gallery-r4 .r4-v { aspect-ratio: 3 / 4; object-fit: cover; }
+            .collateral-grid { grid-template-columns: 1fr; } 
+        }
+    </style>
+</head>
+<body class="ivan-page">
+
+    <header class="hero-showcase">
+        <div class="shape s-circle"></div>
+        <div class="shape s-square"></div>
+        <div class="shape s-tri"></div>
+        <div class="shape s-half"></div>
+
+        <p class="hero-kicker reveal-elem">Exhibition Design</p>
+        <h1 class="hero-title reveal-elem"><span class="l1">IVAN</span><br><span class="l2">CHERMAYEFF</span></h1>
+        <p class="minimal-text reveal-elem">
+            An exhibition celebrating the life and language of Ivan Chermayeff, the designer who turned bold shape, primary colour and playful collage into one of the most recognisable visual vocabularies of the twentieth century. Six rooms, six chapters of his world.
+        </p>
+    </header>
+
+    <section class="section-container" style="padding-bottom: 30px;">
+        <h2 class="section-label reveal-up">The Exhibition</h2>
+        <p class="section-sub reveal-up">Visitors move through six themed rooms, each translating a facet of Chermayeff's practice into a spatial experience.</p>
+    </section>
+
+    <div class="rooms">
+        <section class="room room-1">
+            <div class="room-text reveal-up">
+                <p class="room-num">01</p>
+                <h3 class="room-name">Who Was Ivan Chermayeff?</h3>
+                <figure class="room-portrait">
+                    <img src="./photos/Ivan.png" alt="Portrait of Ivan Chermayeff" title="Ivan Chermayeff" data-categoria="author" data-orientacao="portrait" loading="lazy">
+                    <figcaption>Ivan Chermayeff</figcaption>
+                </figure>
+                <p class="room-desc">This opening room tells the story of the designer, illustrator and collagist behind a century of unforgettable marks.</p>
+            </div>
+            <div class="room-visual">
+                <div class="room-gallery reveal-up">
+                    <img src="./photos/exposicao/SALA 1 parede a 2.png" alt="Room 1, wall A" title="Room 1, wall A" data-categoria="exhibition" data-sala="1" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 1 parede b 1.png" alt="Room 1, wall B" title="Room 1, wall B" data-categoria="exhibition" data-sala="1" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 1 parede c 1.png" alt="Room 1, wall C" title="Room 1, wall C" data-categoria="exhibition" data-sala="1" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 1 parede d 1.png" alt="Room 1, wall D" title="Room 1, wall D" data-categoria="exhibition" data-sala="1" data-orientacao="landscape" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="room room-2">
+            <div class="room-text reveal-up">
+                <p class="room-num">02</p>
+                <h3 class="room-name">The Marks I</h3>
+                <p class="room-desc">An entry hall of iconic identities. From NBC to Mobil and Chase, the logos that made Chermayeff &amp; Geismar a household language.</p>
+            </div>
+            <div class="room-visual">
+                <div class="room-gallery reveal-up">
+                    <img src="./photos/exposicao/SALA 2 parede a 1.png" alt="Room 2, wall A" title="Room 2, wall A" data-categoria="exhibition" data-sala="2" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 2 parede b 2.png" alt="Room 2, wall B" title="Room 2, wall B" data-categoria="exhibition" data-sala="2" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 2 parede c 1.png" alt="Room 2, wall C" title="Room 2, wall C" data-categoria="exhibition" data-sala="2" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 2 parede d 2.png" alt="Room 2, wall D" title="Room 2, wall D" data-categoria="exhibition" data-sala="2" data-orientacao="landscape" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="room room-3">
+            <div class="room-text reveal-up">
+                <p class="room-num">03</p>
+                <h3 class="room-name">The Marks II</h3>
+                <p class="room-desc">More marks, and the thinking behind them. A second wall of identities showing the range of a single, restless visual language.</p>
+            </div>
+            <div class="room-visual">
+                <div class="room-gallery reveal-up">
+                    <img src="./photos/exposicao/SALA 3 parede a 1.png" alt="Room 3, wall A" title="Room 3, wall A" data-categoria="exhibition" data-sala="3" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 3 parede b 2.png" alt="Room 3, wall B" title="Room 3, wall B" data-categoria="exhibition" data-sala="3" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 3 parede c 2.png" alt="Room 3, wall C" title="Room 3, wall C" data-categoria="exhibition" data-sala="3" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 3 parede d 2.png" alt="Room 3, wall D" title="Room 3, wall D" data-categoria="exhibition" data-sala="3" data-orientacao="landscape" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="room room-4">
+            <div class="room-text reveal-up">
+                <p class="room-num">04</p>
+                <h3 class="room-name">Play the Marks</h3>
+                <p class="room-desc">An interactive wall where the logos become a game. Visitors build, test and play with the marks in three dimensions.</p>
+            </div>
+            <div class="room-visual">
+                <div class="gallery-r4 reveal-up">
+                    <img class="r4-h r4-h1" src="./photos/interacao/sala4_jogo3D_1.png" alt="Room 4, 3D logo game (view 1)" title="Room 4, 3D logo game (1)" data-categoria="interaction" data-sala="4" data-orientacao="landscape" loading="lazy">
+                    <img class="r4-h r4-h2" src="./photos/interacao/sala4_jogo3D_2.png" alt="Room 4, 3D logo game (view 2)" title="Room 4, 3D logo game (2)" data-categoria="interaction" data-sala="4" data-orientacao="landscape" loading="lazy">
+                    <img class="r4-v" src="./photos/interacao/sala4_jogo_interface.png" alt="Room 4, logo game interface" title="Room 4, game interface" data-categoria="interaction" data-sala="4" data-orientacao="portrait" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="room room-5">
+            <div class="room-text reveal-up">
+                <p class="room-num">05</p>
+                <h3 class="room-name">Collapse</h3>
+                <p class="room-desc">A room devoted to collage. Torn paper, found objects and photography layered with a child's freedom and a master's intent.</p>
+            </div>
+            <div class="room-visual">
+                <div class="room-gallery reveal-up">
+                    <img src="./photos/exposicao/SALA 5 parede a 1.png" alt="Room 5, wall A" title="Room 5, wall A" data-categoria="exhibition" data-sala="5" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 5 parede b 1.png" alt="Room 5, wall B (view 1)" title="Room 5, wall B (1)" data-categoria="exhibition" data-sala="5" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 5 parede b 2.png" alt="Room 5, wall B (view 2)" title="Room 5, wall B (2)" data-categoria="exhibition" data-sala="5" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/exposicao/SALA 5 parede c 1.png" alt="Room 5, wall C" title="Room 5, wall C" data-categoria="exhibition" data-sala="5" data-orientacao="landscape" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="room room-6">
+            <div class="room-text reveal-up">
+                <p class="room-num">06</p>
+                <h3 class="room-name">Make Your Own</h3>
+                <p class="room-desc">The closing room turns collage into interaction. Projection and live tools invite visitors to become collagists themselves, and leave with a piece of their own.</p>
+            </div>
+            <div class="room-visual">
+                <div class="room-gallery reveal-up">
+                    <img src="./photos/interacao/sala6_interacao_1.png" alt="Room 6, collage interaction 1" title="Room 6, collage interaction 1" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_interacao_2.png" alt="Room 6, collage interaction 2" title="Room 6, collage interaction 2" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_interacao_3.png" alt="Room 6, collage interaction 3" title="Room 6, collage interaction 3" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_intercao3D_1.png" alt="Room 6, collage interaction in 3D (view 1)" title="Room 6, 3D interaction (1)" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_intercao3D_2.png" alt="Room 6, collage interaction in 3D (view 2)" title="Room 6, 3D interaction (2)" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_intercao3D_3.png" alt="Room 6, collage interaction in 3D (view 3)" title="Room 6, 3D interaction (3)" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                    <img src="./photos/interacao/sala6_projetor_exeplo_outputs.png" alt="Room 6, projector output examples" title="Room 6, projector outputs" data-categoria="interaction" data-sala="6" data-orientacao="landscape" loading="lazy">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="section-container" style="padding-bottom: 40px;">
+        <h2 class="section-label reveal-up">Communication</h2>
+        <p class="section-sub reveal-up">The exhibition's visual language beyond the gallery walls: posters, tickets, street presence and social media.</p>
+
+        <div class="collateral-block reveal-up">
+            <h3 class="collateral-cat">Posters</h3>
+            <div class="collateral-grid is-portrait">
+                <figure><img src="./photos/cartaz_1.png" alt="Poster 1" title="Poster 1" data-categoria="poster" data-orientacao="portrait" loading="lazy"><figcaption>Poster 1</figcaption></figure>
+                <figure><img src="./photos/cartaz_2.png" alt="Poster 2" title="Poster 2" data-categoria="poster" data-orientacao="portrait" loading="lazy"><figcaption>Poster 2</figcaption></figure>
+                <figure><img src="./photos/cartaz_3.png" alt="Poster 3" title="Poster 3" data-categoria="poster" data-orientacao="portrait" loading="lazy"><figcaption>Poster 3</figcaption></figure>
+            </div>
+        </div>
+
+        <div class="collateral-block reveal-up">
+            <h3 class="collateral-cat">Tickets</h3>
+            <div class="collateral-grid">
+                <figure><img src="./photos/bilhete_1.png" alt="Exhibition ticket 1" title="Ticket 1" data-categoria="ticket" data-orientacao="landscape" loading="lazy"><figcaption>Ticket 1</figcaption></figure>
+                <figure><img src="./photos/bilhete_2.png" alt="Exhibition ticket 2" title="Ticket 2" data-categoria="ticket" data-orientacao="landscape" loading="lazy"><figcaption>Ticket 2</figcaption></figure>
+                <figure><img src="./photos/bilhete_3.png" alt="Exhibition ticket 3" title="Ticket 3" data-categoria="ticket" data-orientacao="landscape" loading="lazy"><figcaption>Ticket 3</figcaption></figure>
+            </div>
+        </div>
+
+        <div class="collateral-block reveal-up">
+            <h3 class="collateral-cat">On the Street</h3>
+            <div class="collateral-grid">
+                <figure><img src="./photos/cartaz_na_rua_1.png" alt="Street poster in context 1" title="Street poster 1" data-categoria="street-poster" data-orientacao="landscape" loading="lazy"><figcaption>Street poster 1</figcaption></figure>
+                <figure><img src="./photos/cartaz_na_rua_2.png" alt="Street poster in context 2" title="Street poster 2" data-categoria="street-poster" data-orientacao="landscape" loading="lazy"><figcaption>Street poster 2</figcaption></figure>
+                <figure><img src="./photos/cartaz_na_rua_3.png" alt="Street poster in context 3" title="Street poster 3" data-categoria="street-poster" data-orientacao="landscape" loading="lazy"><figcaption>Street poster 3</figcaption></figure>
+                <figure><img src="./photos/cartaz_na_rua_4.png" alt="Street poster in context 4" title="Street poster 4" data-categoria="street-poster" data-orientacao="landscape" loading="lazy"><figcaption>Street poster 4</figcaption></figure>
+                <figure><img src="./photos/cartaz_na_rua_5.png" alt="Street poster in context 5" title="Street poster 5" data-categoria="street-poster" data-orientacao="landscape" loading="lazy"><figcaption>Street poster 5</figcaption></figure>
+            </div>
+        </div>
+
+        <div class="collateral-block reveal-up">
+            <h3 class="collateral-cat">Social Media</h3>
+            <div class="collateral-grid is-single">
+                <figure><img src="./photos/exemplo_redes_sociais.png" alt="Social media post example" title="Social media post" data-categoria="social" data-orientacao="landscape" loading="lazy"><figcaption>Social media post</figcaption></figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container floorplan" style="padding-top: 60px; padding-bottom: 130px;">
+        <h2 class="section-label reveal-up">Floor Plan</h2>
+        <p class="section-sub reveal-up">The complete route through the six rooms.</p>
+        <img class="floorplan-img reveal-up" src="./photos/planta.jpg" alt="Exhibition floor plan" title="Floor plan" data-categoria="floorplan" data-orientacao="landscape" loading="lazy">
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(document.body, { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+        gsap.from(".hero-kicker", { y: 20, opacity: 0, duration: 1, ease: "power3.out", delay: 0.1 });
+        gsap.from(".hero-title", { y: 40, opacity: 0, duration: 1.1, ease: "power3.out", delay: 0.2 });
+        gsap.from(".hero-showcase .minimal-text", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.45 });
+        gsap.from(".shape", { scale: 0, opacity: 0, duration: 1, ease: "back.out(1.6)", stagger: 0.12, delay: 0.3 });
+
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem,
+                { y: 60, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 1, ease: "power2.out",
+                    scrollTrigger: { trigger: elem, start: "top 85%", toggleActions: "play none none reverse" }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.shape').forEach((s, i) => {
+            gsap.to(s, {
+                yPercent: (i % 2 === 0 ? -1 : 1) * 30,
+                ease: "none",
+                scrollTrigger: { trigger: ".hero-showcase", start: "top top", end: "bottom top", scrub: 1 }
+            });
+        });
+    </script>
+</body>
+</html>

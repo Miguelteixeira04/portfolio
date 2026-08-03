@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamilton | My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=League+Spartan:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        body.hamilton-page {
+            background-color: #111111;
+            color: #f4f4f4;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 0; 
+        }
+
+        .hero-showcase {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 15vh;
+            padding-bottom: 10vh;
+            min-height: 100vh;
+            height: auto;
+        }
+
+        .hero-title {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 10vw;
+            line-height: 1;
+            margin: 0 0 20px 0;
+            letter-spacing: 2px;
+            z-index: 2;
+            color: #d0ac3a;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .hero-mockup {
+            width: auto;
+            height: 100vh;
+            max-height: 800px;
+            max-width: 90%;
+            margin-bottom: 40px;
+            z-index: 1;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+            transition: transform 0.5s ease;
+        }
+
+        .hero-mockup:hover {
+            transform: scale(1.02);
+        }
+
+        .minimal-text {
+            font-family: 'Alice', serif;
+            font-size: 1.2rem;
+            color: #aaa;
+            text-align: center;
+            max-width: 700px;
+            margin: 0;
+            line-height: 1.6;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .section-container {
+            padding: 80px 5vw;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #d0ac3a;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .book-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .person-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .person-card .minimal-text {
+            margin-top: 0;
+        }
+
+        .img-wrapper {
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            background-color: #1a1a1a;
+            width: 100%;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .img-sergio {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 4px;
+            filter: grayscale(100%);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            transition: transform 0.6s ease;
+        }
+
+        .img-sergio:hover {
+            transform: scale(1.03);
+        }
+
+        .cars-section {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            margin-left: -5vw;
+            overflow: hidden;
+            background: linear-gradient(180deg, #111111 0%, #1a1a1a 50%, #111111 100%);
+        }
+
+        .car-side {
+            position: absolute;
+            width: 50vw;
+            min-width: 400px;
+            max-width: 800px;
+            z-index: 2;
+            pointer-events: none;
+            filter: drop-shadow(0 30px 20px rgba(0,0,0,0.5));
+        }
+
+        .w12-side {
+            right: -20vw;
+            top: 15%;
+        }
+
+        .sf25-side {
+            left: -20vw;
+            top: 45%;
+        }
+
+        .brochure-section {
+            background-color: #f4f4f4;
+            color: #181817;
+            padding: 120px 5vw;
+        }
+
+        .brochure-section .section-label {
+            color: #181817;
+        }
+
+        .brochure-section .minimal-text {
+            color: #555;
+        }
+
+        .brochure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+            align-items: start;
+        }
+
+        .brochure-grid .b-right {
+            margin-top: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .book-details-grid { grid-template-columns: 1fr; gap: 60px; }
+            .brochure-grid { grid-template-columns: 1fr; gap: 40px; }
+            .brochure-grid .b-right { margin-top: 0; }
+            .car-side { width: 80vw; }
+            .sf25-side { top: 55%; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 13vw; }
+            .hero-mockup { height: 50vh; }
+        }
+    </style>
+</head>
+<body class="hamilton-page">
+    
+    <header class="hero-showcase">
+        <h1 class="hero-title reveal-elem">HAMILTON</h1>
+        <img src="./photos/capa.jpg" alt="Hamilton Book Cover" class="hero-mockup reveal-elem">
+        <p class="minimal-text reveal-elem">
+            A typographic exploration. The book cover relies strictly on typography, shaping the letters from the outlines of the iconic circuits where Lewis Hamilton secured his victories.
+        </p>
+    </header>
+
+    <section class="section-container" style="padding-bottom: 20px;">
+        <h2 class="section-label reveal-up">The Protagonists</h2>
+        <p class="minimal-text reveal-up" style="margin: 0 auto;">The legacy of a 7-time F1 World champion and the voice behind the narrative.</p>
+        
+        <div class="book-details-grid">
+            <div class="person-card reveal-up">
+                <div class="img-wrapper"><img src="./photos/lh1.jpg" alt="Lewis Hamilton - Mercedes"></div>
+                <p class="minimal-text">Lewis Hamilton - Mercedes</p>
+            </div>
+            
+            <div class="person-card reveal-up">
+                <img src="./photos/servio veiga.webp" alt="Sérgio Veiga - Author" class="img-sergio">
+                <p class="minimal-text">Sérgio Veiga - Author</p>
+            </div>
+            
+            <div class="person-card reveal-up">
+                <div class="img-wrapper"><img src="./photos/lh2.jpg" alt="Lewis Hamilton - Ferrari"></div>
+                <p class="minimal-text">Lewis Hamilton - Ferrari</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cars-section">
+        <img src="./photos/w12.png" alt="W12 Side" class="car-side w12-side">
+        <img src="./photos/sf25.png" alt="SF25 Side" class="car-side sf25-side">
+    </section>
+
+    <section class="brochure-section">
+        <h2 class="section-label reveal-up">Brochure Design</h2>
+        <p class="minimal-text reveal-up" style="margin: 0 auto;">An editorial layout complementing the text "Why Have There Been No Great Women Artists?". Structured to provide a critical and highly readable pacing.</p>
+        
+        <div class="brochure-grid">
+            <div class="img-wrapper reveal-up b-left"><img src="./photos/b1.jpg" alt="Brochure Page 1"></div>
+            <div class="img-wrapper reveal-up b-right"><img src="./photos/b2.jpg" alt="Brochure Page 2"></div>
+            <div class="img-wrapper reveal-up b-left"><img src="./photos/b3.jpg" alt="Brochure Page 3"></div>
+            <div class="img-wrapper reveal-up b-right"><img src="./photos/b4.jpg" alt="Brochure Page 4"></div>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(document.body, { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+        gsap.from(".hero-title", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 });
+        gsap.from(".hero-mockup", { y: 60, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
+        gsap.from(".hero-showcase .minimal-text", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.7 });
+
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem, 
+                { y: 60, opacity: 0 },
+                { 
+                    y: 0, opacity: 1, duration: 1, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        gsap.to(".w12-side", {
+            x: () => -window.innerWidth * 0.9,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".cars-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        gsap.to(".sf25-side", {
+            x: () => window.innerWidth * 0.9,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".cars-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+
+    </script>
+</body>
+</html>
