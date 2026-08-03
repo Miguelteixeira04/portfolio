@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voz d' Hoje | My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=League+Spartan:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        body.voz-page {
+            background-color: #f4f4f4;
+            color: #181817;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 1 !important;
+        }
+
+        .hero-showcase {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 15vh;
+        }
+
+        .hero-title {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 9vw;
+            line-height: 0.8;
+            margin: 0;
+            letter-spacing: -2px;
+            z-index: 2;
+            color: #181817;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+        }
+
+        .hero-mockup {
+            width: 80%;
+            max-width: 900px;
+            margin-top: 4vh;
+            z-index: 1;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+            transition: transform 0.5s ease;
+        }
+
+        .hero-mockup:hover {
+            transform: scale(1.02);
+        }
+
+        .minimal-text {
+            font-family: 'Alice', serif;
+            font-size: 1.2rem;
+            color: #555;
+            text-align: center;
+            max-width: 700px;
+            margin: 40px auto 80px auto;
+            line-height: 1.6;
+        }
+
+        .section-container {
+            padding: 80px 5vw;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #f26b38;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .spreads-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .spreads-grid .img-wrapper:nth-child(even) {
+            transform: translateY(50px);
+        }
+
+        .img-wrapper {
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .dark-section {
+            background-color: #181817;
+            color: #f4f4f4;
+            padding: 120px 5vw;
+            margin-top: 60px;
+        }
+
+        .dark-section .section-label {
+            color: #00d2ff;
+        }
+
+        .dark-section .minimal-text {
+            color: #aaa;
+        }
+
+        @media (max-width: 900px) {
+            .spreads-grid { grid-template-columns: 1fr; gap: 30px; }
+            .spreads-grid .img-wrapper:nth-child(even) { transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 14vw; margin-top: 40px; }
+        }
+    </style>
+</head>
+<body class="voz-page">
+    
+    <header class="hero-showcase">
+        <h1 class="hero-title reveal-elem">VOZ D' HOJE</h1>
+        <img src="./photos/capa.jpg" alt="Voz d' Hoje Cover" class="hero-mockup reveal-elem">
+        <p class="minimal-text reveal-elem">
+            A modern reinterpretation of classic newspaper layouts.
+        </p>
+    </header>
+
+    <section class="section-container">
+        <h2 class="section-label reveal-up">Football</h2>
+        <p class="minimal-text reveal-up">Structured hierarchy and bold typography guiding the reader through the latest on the pitch.</p>
+        <div class="spreads-grid">
+            <div class="img-wrapper reveal-up"><img src="./photos/1.jpg" alt="Football Page 1"></div>
+            <div class="img-wrapper reveal-up parallax-img"><img src="./photos/2.jpg" alt="Football Page 2"></div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-label reveal-up">Formula 1</h2>
+        <p class="minimal-text reveal-up">Dynamic layouts capturing the speed and precision of motorsport.</p>
+        <div class="spreads-grid">
+            <div class="img-wrapper reveal-up"><img src="./photos/3.jpg" alt="F1 Page 1"></div>
+            <div class="img-wrapper reveal-up parallax-img"><img src="./photos/4.jpg" alt="F1 Page 2"></div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-label reveal-up">MotoGP</h2>
+        <p class="minimal-text reveal-up">High-impact imagery paired with clean columns for an immersive reading experience.</p>
+        <div class="spreads-grid">
+            <div class="img-wrapper reveal-up"><img src="./photos/5.jpg" alt="MotoGP Page 1"></div>
+            <div class="img-wrapper reveal-up parallax-img"><img src="./photos/6.jpg" alt="MotoGP Page 2"></div>
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <h2 class="section-label reveal-up">Social & Lifestyle</h2>
+        <p class="minimal-text reveal-up">A softer visual approach, balancing whitespace and contemporary editorial design for cultural news.</p>
+        <div class="spreads-grid">
+            <div class="img-wrapper reveal-up"><img src="./photos/7.jpg" alt="Social Page 1"></div>
+            <div class="img-wrapper reveal-up parallax-img"><img src="./photos/8.jpg" alt="Social Page 2"></div>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(document.body, { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+        gsap.from(".hero-title", { y: 50, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 });
+        gsap.from(".hero-mockup", { y: 100, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
+        gsap.from(".hero-showcase .minimal-text", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.7 });
+
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem, 
+                { y: 60, opacity: 0 },
+                { 
+                    y: 0, opacity: 1, duration: 1, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.parallax-img').forEach(img => {
+            gsap.to(img, {
+                yPercent: -10,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom", 
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

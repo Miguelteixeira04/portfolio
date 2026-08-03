@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WC26 Album | My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=League+Spartan:wght@800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../style.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        body.wc-page {
+            background-color: #181817;
+            color: #f4f4f4;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+        }
+
+        body.wc-page::before {
+            content: '';
+            position: fixed; 
+            inset: 0; 
+            z-index: -1; 
+            pointer-events: none;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+
+        .hero-showcase {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 15vh;
+            min-height: 70vh;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            line-height: 1.2;
+            margin: 0;
+            letter-spacing: 2px;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .title-wc {
+            font-size: 6.5vw;
+            color: #ba8e42;
+            text-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
+        }
+
+        .title-album {
+            font-size: 6vw;
+            color: #c0c0c0;
+            text-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            z-index: 2;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tech-icon {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(255,255,255,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-section {
+            position: relative;
+            padding: 80px 5vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .text-wrapper {
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-stage {
+            position: relative;
+            z-index: 2;
+            font-family: 'Alice', serif;
+            font-size: 1.3rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: left;
+            max-width: 700px;
+            background: radial-gradient(circle at center, rgba(24,24,23,0.9) 20%, rgba(24,24,23,0) 80%);
+            padding: 20px;
+        }
+
+        .highlight {
+            color: #ba8e42;
+            font-weight: 800;
+            font-size: 1.1rem;
+            -webkit-text-stroke: 0px transparent !important;
+            -webkit-text-fill-color: #ba8e42 !important;
+        }
+
+        .side-stickers-left, .side-stickers-right {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .side-stickers-left { left: 0px; }
+        .side-stickers-right { right: 0px; }
+
+        .side-card {
+            position: absolute;
+            width: 160px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            opacity: 0; 
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+        }
+
+        .l-1 { top: -20px; left: -100px; transform: rotate(-15deg); }
+        .l-2 { top: 120px; left: -10px; transform: rotate(10deg); }
+        .l-3 { top: 260px; left: -100px; transform: rotate(-5deg); }
+        .l-4 { top: 400px; left: -10px; transform: rotate(12deg); }
+        .l-5 { top: 540px; left: -100px; transform: rotate(-8deg); }
+
+        .r-1 { top: -10px; right: -100px; transform: rotate(12deg); }
+        .r-2 { top: 130px; right: -10px; transform: rotate(-10deg); }
+        .r-3 { top: 270px; right: -100px; transform: rotate(5deg); }
+        .r-4 { top: 410px; right: -10px; transform: rotate(-15deg); }
+        .r-5 { top: 550px; right: -100px; transform: rotate(8deg); }
+
+        .section-label {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #00d2ff;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 100px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fan-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin: 80px 0 180px 0; 
+            z-index: 10;
+        }
+
+        .pack-wrapper {
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        .pack-image {
+            width: 340px; 
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 210, 255, 0.2);
+            animation: floatPack 2.5s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .pack-wrapper:hover .pack-image {
+            transform: scale(1.05);
+            animation-play-state: paused;
+            box-shadow: 0 20px 50px rgba(0, 210, 255, 0.4);
+        }
+
+        .pack-instruction {
+            font-family: 'League Spartan', sans-serif;
+            color: #00d2ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            margin: 0;
+            animation: pulseText 1.5s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes floatPack {
+            0%, 100% { transform: translateY(10px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .fan-card {
+            position: absolute;
+            bottom: 0;
+            width: 340px; 
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transform-origin: bottom center;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.05);
+            margin-bottom: 35px;
+        }
+
+        .fan-card.interactive {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .fan-card:nth-child(1) { transform: rotate(-20deg) translateX(-180px) translateY(30px); z-index: 1; }
+        .fan-card:nth-child(2) { transform: rotate(-10deg) translateX(-90px) translateY(10px); z-index: 2; }
+        .fan-card:nth-child(3) { transform: rotate(0deg) translateX(0) translateY(0); z-index: 3; }
+        .fan-card:nth-child(4) { transform: rotate(10deg) translateX(90px) translateY(10px); z-index: 4; }
+        .fan-card:nth-child(5) { transform: rotate(20deg) translateX(180px) translateY(30px); z-index: 5; }
+
+        .fan-card.interactive:hover {
+            z-index: 20 !important;
+            box-shadow: 0 25px 60px rgba(0, 210, 255, 0.4);
+            border-color: #00d2ff;
+        }
+
+        .fan-card:nth-child(1).interactive:hover { transform: rotate(-20deg) translateX(-180px) translateY(-30px) scale(1.1); }
+        .fan-card:nth-child(2).interactive:hover { transform: rotate(-10deg) translateX(-90px) translateY(-30px) scale(1.1); }
+        .fan-card:nth-child(3).interactive:hover { transform: rotate(0deg) translateX(0) translateY(-30px) scale(1.1); }
+        .fan-card:nth-child(4).interactive:hover { transform: rotate(10deg) translateX(90px) translateY(-30px) scale(1.1); }
+        .fan-card:nth-child(5).interactive:hover { transform: rotate(20deg) translateX(180px) translateY(-30px) scale(1.1); }
+
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .img-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .map-section {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .map-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,210,255,0.15);
+            margin-top: 40px;
+            z-index: 2;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 1200px) {
+            .side-stickers-left, .side-stickers-right { display: none; }
+        }
+
+        @media (max-width: 900px) {
+            .assets-grid { grid-template-columns: 1fr 1fr; }
+            .fan-container { height: 450px; margin-bottom: 120px; }
+            .pack-image { width: 220px; }
+            .fan-card { width: 220px; }
+            
+            .fan-card:nth-child(1) { transform: rotate(-20deg) translateX(-140px) translateY(20px); }
+            .fan-card:nth-child(2) { transform: rotate(-10deg) translateX(-70px) translateY(5px); }
+            .fan-card:nth-child(4) { transform: rotate(10deg) translateX(70px) translateY(5px); }
+            .fan-card:nth-child(5) { transform: rotate(20deg) translateX(140px) translateY(20px); }
+            
+            .fan-card:nth-child(1).interactive:hover { transform: rotate(-20deg) translateX(-140px) translateY(-20px) scale(1.1); }
+            .fan-card:nth-child(2).interactive:hover { transform: rotate(-10deg) translateX(-70px) translateY(-20px) scale(1.1); }
+            .fan-card:nth-child(4).interactive:hover { transform: rotate(10deg) translateX(70px) translateY(-20px) scale(1.1); }
+            .fan-card:nth-child(5).interactive:hover { transform: rotate(20deg) translateX(140px) translateY(-20px) scale(1.1); }
+        }
+
+        @media (max-width: 600px) {
+            .assets-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 14vw; }
+            .tech-icon { width: 40px; height: 40px; }
+            .fan-container { height: 350px; margin-bottom: 100px; }
+            .pack-image { width: 160px; }
+            .fan-card { width: 160px; }
+            
+            .fan-card:nth-child(1) { transform: rotate(-20deg) translateX(-80px) translateY(10px); }
+            .fan-card:nth-child(2) { transform: rotate(-10deg) translateX(-40px) translateY(0px); }
+            .fan-card:nth-child(4) { transform: rotate(10deg) translateX(40px) translateY(0px); }
+            .fan-card:nth-child(5) { transform: rotate(20deg) translateX(80px) translateY(10px); }
+
+            .fan-card:nth-child(1).interactive:hover { transform: rotate(-20deg) translateX(-80px) translateY(-15px) scale(1.1); }
+            .fan-card:nth-child(2).interactive:hover { transform: rotate(-10deg) translateX(-40px) translateY(-15px) scale(1.1); }
+            .fan-card:nth-child(4).interactive:hover { transform: rotate(10deg) translateX(40px) translateY(-15px) scale(1.1); }
+            .fan-card:nth-child(5).interactive:hover { transform: rotate(20deg) translateX(80px) translateY(-15px) scale(1.1); }
+        }
+    </style>
+</head>
+<body class="wc-page">
+
+    <header class="hero-showcase">
+        <h1 class="hero-title reveal-elem">
+            <span class="title-wc">FIFA WORLD CUP 2026</span><br><span class="title-album"> STICKER ALBUM</span>
+        </h1>
+        <div class="tech-stack reveal-elem">
+            <img src="../../../photos/icons/html.png" alt="HTML" class="tech-icon">
+            <img src="../../../photos/icons/css.png" alt="CSS" class="tech-icon">
+            <img src="../../../photos/icons/js.png" alt="JavaScript" class="tech-icon">
+            <img src="../../../photos/icons/sql.png" alt="SQL" class="tech-icon">
+            <img src="../../../photos/icons/api.png" alt="REST API" class="tech-icon">
+            <img src="../../../photos/icons/photoshop.png" alt="Adobe Photoshop" class="tech-icon">
+        </div>
+    </header>
+
+    <section class="content-section">
+        
+        <div class="text-wrapper">
+            
+            <div class="side-stickers-left">
+                <img src="./photos/leque/2.jpg" class="side-card l-1 scroll-anim-1">
+                <img src="./photos/leque/3.jpg" class="side-card l-2 scroll-anim-2">
+                <img src="./photos/leque/5.jpg" class="side-card l-3 scroll-anim-3">
+                <img src="./photos/leque/6.jpg" class="side-card l-4 scroll-anim-4">
+                <img src="./photos/leque/9.jpg" class="side-card l-5 scroll-anim-5">
+            </div>
+
+            <div class="side-stickers-right">
+                <img src="./photos/leque/12.jpg" class="side-card r-1 scroll-anim-1">
+                <img src="./photos/leque/13.jpg" class="side-card r-2 scroll-anim-2">
+                <img src="./photos/leque/14.jpg" class="side-card r-3 scroll-anim-3">
+                <img src="./photos/leque/17.jpg" class="side-card r-4 scroll-anim-4">
+                <img src="./photos/leque/19.jpg" class="side-card r-5 scroll-anim-5">
+            </div>
+
+            <div>
+                <p class="text-stage reveal-up" id="p1">
+                    I was responsible for developing a complete digital sticker album experience, building the <span class="highlight">front-end architecture</span> using HTML, CSS, and JavaScript. The interface was meticulously designed to bridge nostalgia with modern <span class="highlight">interactive web capabilities</span>.
+                </p>
+
+                <p class="text-stage reveal-up" id="p2">
+                    The core mechanics rely on a robust <span class="highlight">REST API</span> and an SQL database to manage user accounts, handle the virtual sticker collections, and facilitate trading functionalities between players. This allows players to securely open packs and track their <span class="highlight">completion progress</span> in real-time.
+                </p>
+
+                <p class="text-stage reveal-up" id="p3">
+                    All visual assets, including the dynamic player cards, mascots, and highly detailed stadium backgrounds, were crafted and optimised using <span class="highlight">Adobe Photoshop</span>. This ensured high-fidelity graphics and a <span class="highlight">premium user experience</span> across all screen sizes.
+                </p>
+            </div>
+        </div>
+        
+        <div class="fan-container reveal-up" id="packContainer">
+            <div class="pack-wrapper" id="packWrapper">
+                <img src="./photos/saqueta.jpg" alt="Sticker Pack" class="pack-image">
+                <p class="pack-instruction">Click to Open</p>
+            </div>
+        </div>
+
+        <h2 class="section-label reveal-up">Mascots & Stadiums</h2>
+        <div class="assets-grid reveal-up">
+            <div class="img-wrapper"><img src="./photos/WC01.jpg" alt="Ball"></div>
+            <div class="img-wrapper"><img src="./photos/WC02.jpg" alt="Cup"></div>
+            <div class="img-wrapper"><img src="./photos/WC03.jpg" alt="Mascot 1"></div>
+
+            <div class="img-wrapper"><img src="./photos/WC06.jpg" alt="Stadium 1"></div>
+            <div class="img-wrapper"><img src="./photos/WC07.jpg" alt="Stadium 2"></div>
+            <div class="img-wrapper"><img src="./photos/WC04.jpg" alt="Mascot 2"></div>
+
+            <div class="img-wrapper"><img src="./photos/WC24.jpg" alt="Stadium 3"></div>
+            <div class="img-wrapper"><img src="./photos/WC25.jpg" alt="Stadium 4"></div>
+            <div class="img-wrapper"><img src="./photos/WC05.jpg" alt="Mascot 3"></div>
+        </div>
+
+        <h2 class="section-label reveal-up">Digital Interface</h2>
+        <div class="map-section">
+            <div class="map-wrapper reveal-up"><img src="./photos/gamehud.png" alt="Game HUD Background"></div>
+        </div>
+
+        <h2 class="section-label reveal-up">Gameplay Overview</h2>
+        <div class="video-container reveal-up">
+            <iframe src="./photos/wc2026.mp4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(document.body, { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+        gsap.from(".hero-title", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.2 });
+        gsap.from(".tech-stack", { y: 30, opacity: 0, duration: 1, ease: "power3.out", delay: 0.4 });
+
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem, 
+                { y: 60, opacity: 0 },
+                { 
+                    y: 0, opacity: 1, duration: 1, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        gsap.to(".l-1, .l-2, .r-1, .r-2", { opacity: 1, duration: 1, ease: "power2.out", scrollTrigger: { trigger: "#p1", start: "top 85%", toggleActions: "play none none reverse" } });
+        gsap.to(".l-3, .r-3", { opacity: 1, duration: 1, ease: "power2.out", scrollTrigger: { trigger: "#p2", start: "top 85%", toggleActions: "play none none reverse" } });
+        gsap.to(".l-4, .l-5, .r-4, .r-5", { opacity: 1, duration: 1, ease: "power2.out", scrollTrigger: { trigger: "#p3", start: "top 85%", toggleActions: "play none none reverse" } });
+
+        gsap.utils.toArray('.scroll-anim-1').forEach(img => { gsap.to(img, { y: 115, ease: "none", scrollTrigger: { trigger: ".text-wrapper", start: "top 30%", end: "bottom top", scrub: 1 } }); });
+        gsap.utils.toArray('.scroll-anim-2').forEach(img => { gsap.to(img, { y: 115, ease: "none", scrollTrigger: { trigger: ".text-wrapper", start: "top 30%", end: "bottom top", scrub: 1 } }); });
+        gsap.utils.toArray('.scroll-anim-3').forEach(img => { gsap.to(img, { y: 115, ease: "none", scrollTrigger: { trigger: ".text-wrapper", start: "top 30%", end: "bottom top", scrub: 1 } }); });
+        gsap.utils.toArray('.scroll-anim-4').forEach(img => { gsap.to(img, { y: 115, ease: "none", scrollTrigger: { trigger: ".text-wrapper", start: "top 30%", end: "bottom top", scrub: 1 } }); });
+        gsap.utils.toArray('.scroll-anim-5').forEach(img => { gsap.to(img, { y: 115, ease: "none", scrollTrigger: { trigger: ".text-wrapper", start: "top 30%", end: "bottom top", scrub: 1 } }); });
+
+        const packWrapper = document.getElementById('packWrapper');
+        const packContainer = document.getElementById('packContainer');
+
+        packWrapper.addEventListener('click', () => {
+            packWrapper.querySelector('.pack-image').style.animation = 'none';
+            
+            gsap.to(packWrapper, {
+                scale: 1.2,
+                opacity: 0,
+                duration: 0.4,
+                ease: "power2.in",
+                onComplete: () => {
+                    packWrapper.remove(); 
+                    openPack();
+                }
+            });
+        });
+
+        function openPack() {
+            const stickers = [
+                'POR01.jpg', 'POR02.jpg', 'POR03.jpg', 
+                'POR04.jpg', 'POR05.jpg', 'POR16.jpg', 
+                'POR17.jpg', 'POR19.jpg', 'POR24.jpg'
+            ];
+            
+            const shuffled = stickers.sort(() => 0.5 - Math.random()).slice(0, 5);
+            
+            shuffled.forEach((sticker) => {
+                const img = document.createElement('img');
+                img.src = `./photos/${sticker}`;
+                img.className = 'fan-card';
+                packContainer.appendChild(img);
+            });
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    document.querySelectorAll('.fan-card').forEach(card => {
+                        card.classList.add('interactive');
+                    });
+                }
+            });
+
+            tl.from(".fan-card", {
+                y: 150,
+                scale: 0.2,
+                opacity: 0,
+                rotation: 0,
+                x: 0,
+                stagger: 0.1,
+                duration: 0.7,
+                ease: "back.out(1.5)",
+                clearProps: "all" 
+            });
+        }
+
+        window.addEventListener('pagehide', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
